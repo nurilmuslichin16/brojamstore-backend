@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 
-class DefaultController extends Controller
+class HomeController extends Controller
 {
     /**
      * Create a new controller instance.
@@ -16,7 +16,13 @@ class DefaultController extends Controller
         $this->middleware('auth');
     }
 
-    public function index() {
-        return view('pages.dashboard');
+    /**
+     * Show the application dashboard.
+     *
+     * @return \Illuminate\Contracts\Support\Renderable
+     */
+    public function index()
+    {
+        return view('home');
     }
 }
