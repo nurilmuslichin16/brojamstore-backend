@@ -2,12 +2,12 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Product;
-use App\Models\ProductGallery;
-use App\Http\Requests\ProductGalleryRequest;
+use App\Models\Transaction;
+use App\Models\TransactionDetail;
+
 use Illuminate\Http\Request;
 
-class ProductGalleryController extends Controller
+class TransactionController extends Controller
 {
     /**
      * Create a new controller instance.
@@ -18,7 +18,7 @@ class ProductGalleryController extends Controller
     {
         $this->middleware('auth');
     }
-
+    
     /**
      * Display a listing of the resource.
      *
@@ -26,9 +26,9 @@ class ProductGalleryController extends Controller
      */
     public function index()
     {
-        $items = ProductGallery::with('product')->get();
+        $items = Transaction::all();
 
-        return view('pages.product-galleries.index')->with([
+        return view('pages.transactions.index')->with([
             'items' => $items
         ]);
     }
@@ -40,11 +40,7 @@ class ProductGalleryController extends Controller
      */
     public function create()
     {
-        $products = Product::all();
-
-        return view('pages.product-galleries.create')->with([
-            'products' => $products
-        ]);
+        //
     }
 
     /**
@@ -53,15 +49,9 @@ class ProductGalleryController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(ProductGalleryRequest $request)
+    public function store(Request $request)
     {
-        $data = $request->all();
-        $data['photo'] = $request->file('photo')->store(
-            'assets/product', 'public'
-        );
-
-        ProductGallery::create($data);
-        return redirect()->route('product-galleries.index')->with('status', 'Foto barang berhasil ditambah!');
+        //
     }
 
     /**
@@ -72,7 +62,11 @@ class ProductGalleryController extends Controller
      */
     public function show($id)
     {
-        //
+        $item = Transaction::with('details.product')->findOrFail($id);
+
+        return view('pages.transactions.show')->with([
+            'item' => $item
+        ]);
     }
 
     /**
@@ -106,9 +100,6 @@ class ProductGalleryController extends Controller
      */
     public function destroy($id)
     {
-        $item = ProductGallery::findOrFail($id);
-        $item->delete();
-
-        return redirect()->route('product-galleries.index')->with('status', 'Foto barang berhasil dihapus');
+        //
     }
 }
