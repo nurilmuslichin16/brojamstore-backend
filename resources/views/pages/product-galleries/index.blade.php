@@ -31,7 +31,7 @@
                                             <td>{{ $loop->iteration }}</td>
                                             <td>{{ $item->product->name }}</td>
                                             <td>
-                                                <img src="{{ url('storage/'.$item->photo) }}" alt="">
+                                                <img src="{{ url($item->photo) }}" alt="">
                                             </td>
                                             <td>{{ $item->is_default ? 'Ya' : 'Tidak' }}</td>
                                             <td>

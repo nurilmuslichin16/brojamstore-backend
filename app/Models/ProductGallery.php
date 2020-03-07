@@ -21,4 +21,9 @@ class ProductGallery extends Model
     {
         return $this->belongsTo(Product::class, 'product_id', 'id');
     }
+
+    public function getPhotoAttribute($value)
+    {
+        return url('storage/' . $value);
+    }
 }
