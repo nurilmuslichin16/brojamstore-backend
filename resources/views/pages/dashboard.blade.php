@@ -130,25 +130,25 @@
 
             // Pie chart flotPie1
             var piedata = [{
-                    label: "Pending",
+                    label: "PENDING &nbsp",
                     data: [
                         [1, {{ $pie['pending'] }}]
                     ],
-                    color: '#5c6bc0'
+                    color: '#ffc107'
                 },
                 {
-                    label: "Gagal",
+                    label: "FAILED &nbsp",
                     data: [
                         [1, {{ $pie['failed'] }}]
                     ],
-                    color: '#ef5350'
+                    color: '#dc3545'
                 },
                 {
-                    label: "Sukses",
+                    label: "SUCCESS &nbsp",
                     data: [
                         [1, {{ $pie['success'] }}]
                     ],
-                    color: '#66bb6a'
+                    color: '#28a745'
                 }
             ];
 
